@@ -346,6 +346,10 @@ span {
     left: 142%;
 }
 
+.about-content a {
+    color: gold;
+}
+
 .btn-box .btns {
     display: inline-block;
     width: 15rem;
@@ -549,11 +553,11 @@ span {
 }
 
 .skills-column:nth-child(1) .skills-content .progress:nth-child(5) .bar span {
-    width: 60%;
+    width: 85%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
-    width: 90%;
+    width: 98%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
@@ -569,7 +573,7 @@ span {
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(5) .bar span {
-    width: 60%;
+    width: 75%;
 }
 
 .contact {
