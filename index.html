@@ -272,9 +272,14 @@
     <!-- تذييل الصفحة -->
     <footer class="footer">
         <div class="footer-content">
-            <p>جميع الحقوق محفوظة &copy; 2023 | Aboud</p>
+            <p>جميع الحقوق محفوظة &copy; <span id="current-year">2023</span> | Aboud</p>
         </div>
     </footer>
+
+    <!-- إضافة سكريبت لتحديث السنة تلقائيًا -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 
     <!-- تحميل مكتبات Three.js -->
     <script src="https://unpkg.com/three@0.146.0/build/three.min.js"></script>
