@@ -84,5 +84,60 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 150);
     });
   });
+
+  const contactForm = document.querySelector(".contact-card");
+  if (contactForm) {
+    const statusEl = contactForm.querySelector(".form-alert");
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    if (!statusEl || !submitBtn) {
+      return;
+    }
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      statusEl.classList.remove("success", "error");
+      statusEl.textContent = "جارٍ إرسال الرسالة...";
+      statusEl.classList.add("visible");
+      submitBtn.disabled = true;
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: contactForm.method || "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        contactForm.reset();
+        statusEl.innerHTML = `
+          <span class="check-icon" aria-hidden="true">
+            <svg viewBox="0 0 52 52">
+              <circle class="check-icon-circle" cx="26" cy="26" r="25"></circle>
+              <path class="check-icon-check" d="M14 27l7 7 17-17"></path>
+            </svg>
+          </span>
+          <span>تم إرسال الرسالة بنجاح!</span>
+        `;
+        statusEl.classList.add("success");
+      } catch (error) {
+        console.error("تعذر إرسال الرسالة:", error);
+        statusEl.textContent = "تعذر إرسال الرسالة. حاول مجدداً لاحقاً.";
+        statusEl.classList.add("error");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
 });
 
